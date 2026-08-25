@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Main {
+public class rice {
     public static void main(String[] args) {
         double total = 0;
         Scanner input = new Scanner(System.in);
@@ -44,7 +44,5 @@ public class Main {
         }
 
         System.out.println("You should cook " + total + " cups of rice to feed " + numHungryPeople + (numHungryPeople == 1 ? " hungry person " : " hungry people ") + "and " + numLessHungryPeople + (numLessHungryPeople == 1 ? " less hungry person " : " less hungry people "));
-
-        // System.out.println("Total: $" + total);
     }
 }

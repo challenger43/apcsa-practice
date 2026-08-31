@@ -1,0 +1,21 @@
+public class BinaryClockMath {
+    public static void main(String[] args) {
+        int clockValue = 45; //thing you wanna calculate
+        int remaining = clockValue; //set remaining to clockValue which is set above
+
+        int bit1 = remaining % 2; //remainder of clockValue/remaining divided by 2 e.g. if 45 becomes 1
+        remaining = remaining / 2;  //changing the value of remaining by setting it to itself divided by 2, e.g. if 45/2 = 22
+        int bit2 = remaining % 2; //remainder of the current remainder (now 22)
+        remaining = remaining / 2;
+        int bit4 = remaining % 2;
+        remaining = remaining / 2;
+        int bit8 = remaining % 2;
+        remaining = remaining / 2;
+        int bit16 = remaining % 2;
+        remaining = remaining / 2;
+        int bit32 = remaining % 2;
+
+        String bits = "" + bit32 + bit16 + bit8 + bit4 + bit2 + bit1;
+        System.out.println(clockValue + " -> " + bits);
+    }
+}

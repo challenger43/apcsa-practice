@@ -1,3 +1,4 @@
+// I wrote the program in the other file, binaryValue.java, not this file, so if you're looking for my day 7 assignment that's where it is, it is in the day 6 folder
 public class BinaryClockMath {
     public static void main(String[] args) {
         int clockValue = 45; //thing you wanna calculate

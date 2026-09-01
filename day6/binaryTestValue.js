@@ -6,5 +6,5 @@ while (value >= 1){
     value = Math.floor(value/2);
    
 }
-binary = binary.join("")
+binary = binary.reverse().join("")
 console.log(binary + " is the binary form of " + ogValue)

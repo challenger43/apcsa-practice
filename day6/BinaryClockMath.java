@@ -15,7 +15,8 @@ public class BinaryClockMath {
         remaining = remaining / 2;
         int bit32 = remaining % 2;
 
-        String bits = "" + bit32 + bit16 + bit8 + bit4 + bit2 + bit1;
+        String bits = "" + bit32 + bit16 + bit8 + bit4 + bit2 + bit1; //put on backwards because the first value that is calculated is actually the smallest value, and it is reversed
+        // I think you have to add the "" because it is a string type, and perhaps like double and int String overrides int?
         System.out.println(clockValue + " -> " + bits);
     }
 }

@@ -29,12 +29,11 @@ public class binaryValue {
                 individualBinary.add(integer % 2);
                 integer /= 2;
             }
-
-            // while (individualBinary.size() < 6) {
-            //     individualBinary.add(0, 0);
-            // }
-
             Collections.reverse(individualBinary);
+            while (individualBinary.size() < 6) {
+                individualBinary.add(0, 0);
+            }
+
             binary.add(individualBinary);
         }
 
@@ -43,7 +42,7 @@ public class binaryValue {
         for (List<Integer> individualBinary : binary) {
             sb.append(individualBinary);
         }
-        
+
         System.out.print(sb);
     }
 

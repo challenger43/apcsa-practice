@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class rice {
+public class Main {
     public static void main(String[] args) {
         double total = 0;
         Scanner input = new Scanner(System.in);

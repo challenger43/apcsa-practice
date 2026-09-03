@@ -61,12 +61,23 @@ public class binaryClockMath {
 
             binary.add(individualBinary);
         }
-
         StringBuilder sb = new StringBuilder();
-        String result = "";
-        for (List<Integer> individualBinary : binary) {
-            sb.append(individualBinary);
+         int iterations = 0;
+        for (List<Integer> binaryNumber : binary) {
+            for (int digit : binaryNumber) {
+                sb.append(digit);
+            }
+            if (iterations < 2) {
+                sb.append(":");
+            }
+            iterations +=1;
         }
+
+        // StringBuilder sb = new StringBuilder();
+
+        // for (List<Integer> individualBinary : binary) {
+        // sb.append(individualBinary);
+        // }
 
         System.out.print(sb);
     }

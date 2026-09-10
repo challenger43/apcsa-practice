@@ -11,16 +11,16 @@ public class ColorApi {
         int green = input.nextInt();
         int blue = input.nextInt();
 
-        Color fromPacked = new Color(0); // TODO PACKED CONSTRUCTOR: use packedRgb
-        Color fromChannels = new Color(0, 0, 0); // TODO CHANNEL CONSTRUCTOR: use the channel variables
-        int packedRed = 0; // TODO PACKED RED: call the getter on fromPacked
-        int packedGreen = 0; // TODO PACKED GREEN: call the getter on fromPacked
-        int packedBlue = 0; // TODO PACKED BLUE: call the getter on fromPacked
-        int packedAlpha = 0; // TODO PACKED ALPHA: call the getter on fromPacked
-        int directRed = 0; // TODO DIRECT RED: call the getter on fromChannels
-        int directGreen = 0; // TODO DIRECT GREEN: call the getter on fromChannels
-        int directBlue = 0; // TODO DIRECT BLUE: call the getter on fromChannels
-        int directAlpha = 0; // TODO DIRECT ALPHA: call the getter on fromChannels
+        Color fromPacked = new Color(packedRgb); // TODO PACKED CONSTRUCTOR: use packedRgb
+        Color fromChannels = new Color(red, green, blue); // TODO CHANNEL CONSTRUCTOR: use the channel variables
+        int packedRed = fromPacked.getRed(); 
+        int packedGreen = fromPacked.getGreen();
+        int packedBlue = fromPacked.getBlue(); 
+        int packedAlpha = fromPacked.getAlpha();
+        int directRed = fromChannels.getRed(); // TODO DIRECT RED: call the getter on fromChannels
+        int directGreen = fromChannels.getGreen(); // TODO DIRECT GREEN: call the getter on fromChannels
+        int directBlue = fromChannels.getBlue(); // TODO DIRECT BLUE: call the getter on fromChannels
+        int directAlpha = fromChannels.getAlpha(); // TODO DIRECT ALPHA: call the getter on fromChannels
 
         // PROVIDED OUTPUT: preserve these labels, order, and spacing.
         System.out.println("Packed input " + packedRgb + " -> RGB " + packedRed + ", " + packedGreen + ", " + packedBlue + "; alpha " + packedAlpha);

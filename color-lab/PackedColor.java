@@ -1,5 +1,5 @@
 import java.util.Scanner;
-
+//8 bits have 256 possible values because it has 8 places, and each place has 2 potential options (0 or 1) meaning you have 2^8 options or 256. moving left 8 bits means multiplying by 256
 public class PackedColor {
     public static void main(String[] args) {
         // PROVIDED INPUT: enter three levels, such as 1.0 0.5 0.0, then press Enter.
@@ -11,14 +11,14 @@ public class PackedColor {
         double blueLevel = input.nextDouble();
 
         // YOUR CALCULATIONS: replace the placeholders. Use the input variables.
-        int red = 0; // TODO RED: round redLevel * 255
-        int green = 0; // TODO GREEN: round greenLevel * 255
-        int blue = 0; // TODO BLUE: round blueLevel * 255
-        int packedRgb = 0; // TODO PACK: multiplication and addition
-        int recoveredRed = 0; // TODO RECOVER RED: from packedRgb only
-        int recoveredGreen = 0; // TODO RECOVER GREEN: from packedRgb only
-        int recoveredBlue = 0; // TODO RECOVER BLUE: from packedRgb only
-        int largestPackedRgb = 0; // TODO MAXIMUM: calculate from the maximum channels
+        int red = (int) (redLevel*255 + 0.5); 
+        int green = (int) (greenLevel*255 + 0.5); 
+        int blue = (int) (blueLevel*255 + 0.5); 
+        int packedRgb = red*65536 + green*256 + blue; 
+        int recoveredRed = packedRgb/65536 % 256; // puts it back right 16 steps
+        int recoveredGreen = (packedRgb/256) % 256; // moves it right back 8 steps
+        int recoveredBlue = packedRgb%256; // doesn't need to move already is at the end
+        int largestPackedRgb = 255*65536 + 255*256 + 255; // i didn't know what to do here is it supposed to be a set value?
 
         // PROVIDED OUTPUT: preserve these labels, order, and spacing.
         System.out.println("Input levels: " + redLevel + ", " + greenLevel + ", " + blueLevel);
@@ -29,3 +29,4 @@ public class PackedColor {
         input.close();
     }
 }
+//substring prediction: green-blue

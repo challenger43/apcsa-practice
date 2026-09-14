@@ -11,16 +11,16 @@ public class ColorApi {
         int green = input.nextInt();
         int blue = input.nextInt();
 
-        Color fromPacked = new Color(packedRgb); // TODO PACKED CONSTRUCTOR: use packedRgb
-        Color fromChannels = new Color(red, green, blue); // TODO CHANNEL CONSTRUCTOR: use the channel variables
+        Color fromPacked = new Color(packedRgb); 
+        Color fromChannels = new Color(red, green, blue); 
         int packedRed = fromPacked.getRed(); 
         int packedGreen = fromPacked.getGreen();
         int packedBlue = fromPacked.getBlue(); 
         int packedAlpha = fromPacked.getAlpha();
-        int directRed = fromChannels.getRed(); // TODO DIRECT RED: call the getter on fromChannels
-        int directGreen = fromChannels.getGreen(); // TODO DIRECT GREEN: call the getter on fromChannels
-        int directBlue = fromChannels.getBlue(); // TODO DIRECT BLUE: call the getter on fromChannels
-        int directAlpha = fromChannels.getAlpha(); // TODO DIRECT ALPHA: call the getter on fromChannels
+        int directRed = fromChannels.getRed(); 
+        int directGreen = fromChannels.getGreen(); 
+        int directBlue = fromChannels.getBlue(); 
+        int directAlpha = fromChannels.getAlpha(); 
 
         // PROVIDED OUTPUT: preserve these labels, order, and spacing.
         System.out.println("Packed input " + packedRgb + " -> RGB " + packedRed + ", " + packedGreen + ", " + packedBlue + "; alpha " + packedAlpha);
@@ -28,3 +28,7 @@ public class ColorApi {
         input.close();
     }
 }
+
+//alpha is opaque bc if none provided defaults to opaque
+//when packing skips all the gritty math of multiplying having to individually move each rgb value to the left/right 8 places to convert. 
+//To call it on a packed RGB you need to understand how packing works to correctly call it, or else the two values will not equal, it also hides the rounding aspect

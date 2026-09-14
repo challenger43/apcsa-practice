@@ -28,7 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
 
-public class binaryClockMath {
+public class BinaryClockMath {
     public static void main(String[] args) {
         System.out.print(
                 "Type the current time separated by 2 colons. Each value in between colons should be 1-2 digits. ");

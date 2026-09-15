@@ -35,7 +35,7 @@ public class CastingAndRange{
         System.out.println("B1 positive truncation: " + (int) positiveValue);
         System.out.println("B2 negative truncation: " + (int) negativeValue);
         System.out.println("B3 positive rounding: " + (int) (positiveValue + 0.5));
-        System.out.println("B4 negative rounding: " + (int) (negativeValue + 0.5));
+        System.out.println("B4 negative rounding: " + (int) (negativeValue - 0.5));
         System.out.println("C1 automatic widening: " + result);
         System.out.println("D1 maximum int: " + maxInt);
         System.out.println("D2 maximum int plus one: " + (int)(maxInt+1));

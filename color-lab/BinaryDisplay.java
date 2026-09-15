@@ -60,17 +60,18 @@ public class BinaryDisplay {
 
             // EDIT EACH BLOCK: replace its setColor line with an if/else.
             for (int i = 0; i < bits.length(); i++) {
-                int ogX = 605;// each time - 115
+                int originalXValue = 605;// each time - 115
                 if (bits.charAt(i) == '1') {
                     canvas.setColor(onColor);
-                    canvas.fillRect(ogX - 115 * (i), 80, 85, 85);
+                    canvas.fillRect(originalXValue - 115 * (i), 80, 85, 85);
                 } else {
                     canvas.setColor(offColor);
-                    canvas.fillRect(ogX - 115 * (i), 80, 85, 85);
+                    canvas.fillRect(originalXValue - 115 * (i), 80, 85, 85);
                 }
             }
         } else {
             System.out.println("Outside six bit range. No binary report for you.");
+            canvas.drawString("Follow directions.", 280, 110);
         }
 
         // TODO_RANGE_END: add the invalid branch here. Draw its message instead of

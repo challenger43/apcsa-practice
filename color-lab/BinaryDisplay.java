@@ -59,14 +59,14 @@ public class BinaryDisplay {
             canvas.drawString("1", 605, 65);
 
             // EDIT EACH BLOCK: replace its setColor line with an if/else.
-            for (int i = 1; i < bits.length(); i++) {
+            for (int i = 0; i < bits.length(); i++) {
                 int ogX = 605;// each time - 115
                 if (bits.charAt(i) == '1') {
                     canvas.setColor(onColor);
-                    canvas.fillRect(ogX - 115 * (i - 1), 80, 85, 85);
+                    canvas.fillRect(ogX - 115 * (i), 80, 85, 85);
                 } else {
                     canvas.setColor(offColor);
-                    canvas.fillRect(ogX - 115 * (i - 1), 80, 85, 85);
+                    canvas.fillRect(ogX - 115 * (i), 80, 85, 85);
                 }
             }
         } else {

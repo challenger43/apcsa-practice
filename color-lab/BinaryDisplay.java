@@ -18,8 +18,10 @@ public class BinaryDisplay {
         int clockValue = input.nextInt();
         System.out.println("You entered: " + clockValue);
         // YOUR DECISIONS go at TODO_RANGE_START, TODO_BIT, and TODO_RANGE_END below.
-        Color onColor = new Color(255, 180, 50);
-        Color offColor = new Color(65, 75, 95);
+        Color onEvenColor = new Color(255, 180, 50);
+        Color offEvenColor = new Color(96, 51, 255);
+        Color onOddColor = new Color(214, 83, 255);
+        Color offOddColor = new Color(65, 75, 95);
 
         // PROVIDED IMAGE SETUP: creates a fresh image on every run.
         BufferedImage image = new BufferedImage(720, 220, BufferedImage.TYPE_INT_ARGB);
@@ -28,11 +30,6 @@ public class BinaryDisplay {
         canvas.fillRect(0, 0, 720, 220);
         canvas.setFont(new Font("SansSerif", Font.PLAIN, 20));
         canvas.setColor(Color.BLACK);
-        // canvas.drawString("STARTER: add validation and bit decisions", 30, 205); //
-        // TODO_STATUS
-
-        // TODO_RANGE_START: put validation here; only valid values enter the block
-        // below.
         if ((clockValue <= 63) && (clockValue >= 0)) {
             // PROVIDED: the six extraction steps from the earlier binary work.
             int remaining = clockValue;
@@ -59,13 +56,15 @@ public class BinaryDisplay {
             canvas.drawString("1", 605, 65);
 
             // EDIT EACH BLOCK: replace its setColor line with an if/else.
-            for (int i = 0; i < bits.length(); i++) {
+            boolean ifEven = clockValue % 2 == 0;
+            
+            for (int i = bits.length(); i > 0; i--) {
                 int originalXValue = 605;// each time - 115
                 if (bits.charAt(i) == '1') {
-                    canvas.setColor(onColor);
+                    canvas.setColor(ifEven ? onEvenColor : onOddColor);
                     canvas.fillRect(originalXValue - 115 * (i), 80, 85, 85);
-                } else {
-                    canvas.setColor(offColor);
+                } else { 
+                    canvas.setColor(ifEven ? offEvenColor: offOddColor);
                     canvas.fillRect(originalXValue - 115 * (i), 80, 85, 85);
                 }
             }
@@ -74,10 +73,6 @@ public class BinaryDisplay {
             canvas.drawString("Follow directions.", 280, 110);
         }
 
-        // TODO_RANGE_END: add the invalid branch here. Draw its message instead of
-        // bits.
-        // Keep saving OUTSIDE both branches so an invalid run replaces the previous
-        // PNG.
         canvas.dispose();
         File output = new File("binary-display.png");
         ImageIO.write(image, "png", output);

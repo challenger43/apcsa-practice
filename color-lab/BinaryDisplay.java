@@ -54,13 +54,11 @@ public class BinaryDisplay {
             canvas.drawString("4", 375, 65);
             canvas.drawString("2", 490, 65);
             canvas.drawString("1", 605, 65);
-
-            // EDIT EACH BLOCK: replace its setColor line with an if/else.
+            String reversedBits = new StringBuilder(bits).reverse().toString();
             boolean ifEven = clockValue % 2 == 0;
-            
-            for (int i = bits.length(); i > 0; i--) {
+            for (int i = 0; i < bits.length();i++) {
                 int originalXValue = 605;// each time - 115
-                if (bits.charAt(i) == '1') {
+                if (reversedBits.charAt(i) == '1') {
                     canvas.setColor(ifEven ? onEvenColor : onOddColor);
                     canvas.fillRect(originalXValue - 115 * (i), 80, 85, 85);
                 } else { 

@@ -17,7 +17,6 @@ public class BinaryDisplay {
         System.out.print("Enter a number: ");
         int clockValue = input.nextInt();
         System.out.println("You entered: " + clockValue);
-        // YOUR DECISIONS go at TODO_RANGE_START, TODO_BIT, and TODO_RANGE_END below.
         Color onEvenColor = new Color(255, 180, 50);
         Color offEvenColor = new Color(96, 51, 255);
         Color onOddColor = new Color(214, 83, 255);
@@ -31,18 +30,17 @@ public class BinaryDisplay {
         canvas.setFont(new Font("SansSerif", Font.PLAIN, 20));
         canvas.setColor(Color.BLACK);
         if ((clockValue <= 63) && (clockValue >= 0)) {
-            // PROVIDED: the six extraction steps from the earlier binary work.
             int remaining = clockValue;
             int bit1 = remaining % 2;
-            remaining = remaining / 2;
+            remaining /= 2;
             int bit2 = remaining % 2;
-            remaining = remaining / 2;
+            remaining /= 2;
             int bit4 = remaining % 2;
-            remaining = remaining / 2;
+            remaining /= 2;
             int bit8 = remaining % 2;
-            remaining = remaining / 2;
+            remaining /= 2;
             int bit16 = remaining % 2;
-            remaining = remaining / 2;
+            remaining /= 2;
             int bit32 = remaining % 2;
             String bits = "" + bit32 + bit16 + bit8 + bit4 + bit2 + bit1;
             canvas.drawString("Value: " + clockValue, 30, 35);

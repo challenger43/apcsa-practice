@@ -36,13 +36,13 @@ public class Receipt3 {
             System.out.println("**************************************");
             System.out.println("Order number: " + orderNumber);
             System.out.println("Qty   Item        Total");
-            System.out.println(numDrinks + "     Drinks" + "      " + totalDrink);
-            System.out.println(numCandy + "     Candies" + "     " + totalCandy);
-            System.out.println(numHotDog + "     Hotdogs" + "     " + totalHotdog);
-            System.out.println(numHamburger + "     Hamburgers" + "  " + totalHamburger);
-            System.out.println("Subtotal: " + subTotal);
-            System.out.println("Tax: " + df.format(subTotal * tax));
-            System.out.println("Total: " + df.format(total));
+            System.out.println(numDrinks + "     Drinks" + "      $" + df.format(totalDrink));
+            System.out.println(numCandy + "     Candies" + "     $" + df.format(totalCandy));
+            System.out.println(numHotDog + "     Hotdogs" + "     $" + df.format(totalHotdog));
+            System.out.println(numHamburger + "     Hamburgers" + "  $" + df.format(totalHamburger));
+            System.out.println("Subtotal: $" + subTotal);
+            System.out.println("Tax: $" + df.format(subTotal * tax));
+            System.out.println("Total: $" + df.format(total));
         }
     }
 }

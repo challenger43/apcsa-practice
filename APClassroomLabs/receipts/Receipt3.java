@@ -1,5 +1,4 @@
-package APClassroomLabs;
-
+package APClassroomLabs.receipts;
 import java.text.DecimalFormat;
 
 public class Receipt3 {

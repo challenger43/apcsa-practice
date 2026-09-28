@@ -1,23 +1,24 @@
 public class IterationDay16 {
     public static void main(String[] args) {
-        // int remaining = 1;
-        // while (remaining > 0) {
-        //     System.out.println(remaining);
-        //     remaining = remaining - 1;
-        // }
-        // System.out.println("Done");
-        //while loop version
+        int remaining = 1;
+        System.out.println("basic version");
+        while (remaining > 0) {
+            System.out.println(remaining);
+            remaining = remaining - 1;
+        }
+        System.out.println("Done");
+       // while loop version
         int max = 8;
         int numToPrint = 2;
         System.out.println("while loop version: ");
-        while (numToPrint<=max){  //it doesn't fail? 
+        while (numToPrint<=max){  //10 is greater than 8 
             System.out.println(numToPrint);
             numToPrint +=2;
         }
         System.out.println("Done");
         //for loop version -
         System.out.println("for loop version: ");
-        for (int i = 2; i <= 8;i+=2){
+        for (int i = 2; i <= 8;i+=2){ // 10 is greater than 8
             System.out.println(i);
         }
           System.out.println("Done");

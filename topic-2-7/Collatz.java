@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Collatz {
     public static void main(String[] args) {
-        int startInt = 27;
+        int startInt = 999999;
         int steps = 0;
         ArrayList<Integer> numbers = new ArrayList<>();
         while (startInt != 1) {
@@ -17,8 +17,8 @@ public class Collatz {
                 startInt++;
             }
             numbers.add(startInt);
-            System.out.println("Step: " + steps + " Current Value: " + startInt);
             steps++;
+            System.out.println("Step: " + steps + " Current Value: " + startInt);
         }
         int peak = numbers.get(0);
         for (int i = 0; i < numbers.size() - 1; i++) {

@@ -1,7 +1,7 @@
 public class IterationDay17 {
     public static void main(String[] args) {
-        int a = 7;
-        int b = 7;
+        int a = 256;
+        int b = 42;
         while (a != b) {
             if (a > b) {
                 a = a - b;

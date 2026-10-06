@@ -15,3 +15,7 @@ public class IntegerRoot {
         System.out.println(lower);
     }
 }
+
+//extension: each check preserves that lower^2 < n <upper^2 because if midpoint is greater than lower,  lower will be the new midpoint, and otherwise, the new midpoint will be the upper number
+// this means that no matter what, midpoint will never be lower than lower or higher than higher. kidn of hard to explain but yes as in my comment it just squishes the number into bounds by closing off distance
+//you know youve found your number when margin = 1 because there is no more lower or upper to split/ halve.

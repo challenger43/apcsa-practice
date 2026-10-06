@@ -30,3 +30,6 @@ public class Collatz {
         System.out.println(peak);
     }
 }
+//extension: 
+//if i put 3 it makes an infinite loop bc it will infinitely iterate as follows: 3 is not even ,so it will be multiplied by 3n-1, aka 8. 8 is even. 8%2 =0. 8/2 = 4 thiss is where the repetition starts.
+// start int is now 4. 4 is even. 4/2 = 2. 2 is even. 2/2 = 1. 1 is odd. 3(1) + 1 = 4. and so goes on.   since it is and infinite loop, that means that it will check out past 1000 passes to prevent crash from infinite loop.

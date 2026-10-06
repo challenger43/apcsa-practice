@@ -59,3 +59,4 @@ public class DigitCollapse { // all values match provided tests
  // 558
  // maybe ill write a quick program to find it mechanically
  //ok nvm it's impossible
+ //nvm it is possible i just messed up bah

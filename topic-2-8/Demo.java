@@ -8,4 +8,4 @@ public class Demo {
         System.out.println("Score: "+ score);
     }
 }
-//predictions: final score 25
+//predictions: pre change should be 10, final score 25

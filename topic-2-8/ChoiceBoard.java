@@ -5,8 +5,10 @@ import java.util.Collections;
 public class ChoiceBoard {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("This will help you pick your favorite song.");
+        System.out.println("First, enter what you think might be your favorite song. Don't overthink.");
+        String initSong = scanner.nextLine();
         ArrayList<String> songs = new ArrayList<>();
+        System.out.println("If you found it hard to pick, this will help you pick your favorite song amongst some songs you like.");
         System.out.println("Please enter a song:");
         songs.add(scanner.nextLine());
         while (songs.size() < 3) {
@@ -49,10 +51,14 @@ public class ChoiceBoard {
             }
         }
         System.out.println("Your favorite song is: " + songs.get(0));
+        for (int i = 0; i < finalSongs.size(); i++) {
+            if (finalSongs.get(i) == initSong) {
+                System.out.println("Your favorite song matches what you thought it was!");
+            }
+        }
         finalSongs.add(0, songs.get(0));
-             // find second and 3rd favorite songs:
+        // find second and 3rd favorite songs:
         while (finalSongs.size() < 3 & runnerUps.size() > 0) {
-            
             // If there's only 1 song left, it automatically advances
             if (runnerUps.size() == 1) {
                 finalSongs.add(runnerUps.get(0));
@@ -64,7 +70,7 @@ public class ChoiceBoard {
                 String song1 = tempArray.get(0);
                 String song2 = tempArray.get(1);
                 System.out.println("Between these two songs, which do you like more? " + song1 + " or "
-                        +song2+ "?");
+                        + song2 + "?");
                 int preferredSong = scanner.nextInt();
                 while (preferredSong != 1 && preferredSong != 2) {
                     System.out.println("Ensure you type a number, 0, or 1, or else we will be stuck here forever");
@@ -75,13 +81,13 @@ public class ChoiceBoard {
                         scanner.nextLine();
                     }
                 }
-                tempArray.remove(2-preferredSong); // preferredSong is 1 or 2, so this maps them to 1 and 0 respectively
+                tempArray.remove(2 - preferredSong); // preferredSong is 1 or 2, so this maps them to 1 and 0
+                                                     // respectively
             }
             finalSongs.add(tempArray.get(0));
             System.out.println("The next runner up is: " + tempArray.get(0));
             runnerUps.remove(tempArray.get(0));
         }
-        
         System.out.println("Your top 3 favorite songs are, in order: " + finalSongs);
     }
 }

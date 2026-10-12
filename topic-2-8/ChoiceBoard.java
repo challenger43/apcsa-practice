@@ -49,45 +49,39 @@ public class ChoiceBoard {
             }
         }
         System.out.println("Your favorite song is: " + songs.get(0));
-    //     finalSongs.add(0, songs.get(0));
-    //          // find second and 3rd favorite songs:
-    //     while (finalSongs.size() <4 && runnerUps.size() >0) {
+        finalSongs.add(0, songs.get(0));
+             // find second and 3rd favorite songs:
+        while (finalSongs.size() < 3 & runnerUps.size() > 0) {
             
-            
-    //         // If there's only 1 song left, it automatically advances
-    //         if (runnerUps.size() == 1) {
-    //             finalSongs.add(runnerUps.get(0));
-    //             runnerUps.remove(0);
-    //             break;
-    //         }
-    //         ArrayList<String> tempArray = new ArrayList<>(runnerUps);
-    //         while (tempArray.size() > 1) {
-    //             String song1 = tempArray.get(0);
-    //             String song2 = tempArray.get(1);
-    //             System.out.println("Between these two songs, which do you like more? " + song1 + " or "
-    //                     +song2+ "?");
-    //             int preferredSong = scanner.nextInt();
-    //             while (preferredSong != 1 && preferredSong != 2) {
-    //                 System.out.println("Ensure you type a number, 0, or 1, or else we will be stuck here forever");
-    //                 scanner.nextLine();
-    //                 if (scanner.hasNextInt()) {
-    //                     preferredSong = scanner.nextInt();
-    //                 } else {
-    //                     scanner.nextLine();
-    //                 }
-    //             }
-    //             if (preferredSong == 1) {
-    //                 // runnerUps.add(songs.get(1));
-    //                 tempArray.remove(1);
-    //             } else {
-    //                 // runnerUps.add(songs.get(1));
-    //                 tempArray.remove(0);
-    //             }
-    //         }
-    //         finalSongs.add(tempArray.get(0));
-    //         tempArray.remove(0);
-    //     }
+            // If there's only 1 song left, it automatically advances
+            if (runnerUps.size() == 1) {
+                finalSongs.add(runnerUps.get(0));
+                runnerUps.remove(0);
+                break;
+            }
+            ArrayList<String> tempArray = new ArrayList<>(runnerUps);
+            while (tempArray.size() > 1) {
+                String song1 = tempArray.get(0);
+                String song2 = tempArray.get(1);
+                System.out.println("Between these two songs, which do you like more? " + song1 + " or "
+                        +song2+ "?");
+                int preferredSong = scanner.nextInt();
+                while (preferredSong != 1 && preferredSong != 2) {
+                    System.out.println("Ensure you type a number, 0, or 1, or else we will be stuck here forever");
+                    scanner.nextLine();
+                    if (scanner.hasNextInt()) {
+                        preferredSong = scanner.nextInt();
+                    } else {
+                        scanner.nextLine();
+                    }
+                }
+                tempArray.remove(2-preferredSong); // preferredSong is 1 or 2, so this maps them to 1 and 0 respectively
+            }
+            finalSongs.add(tempArray.get(0));
+            System.out.println("The next runner up is: " + tempArray.get(0));
+            runnerUps.remove(tempArray.get(0));
+        }
         
-    //     System.out.println(finalSongs);
+        System.out.println("Your top 3 favorite songs are, in order: " + finalSongs);
     }
 }

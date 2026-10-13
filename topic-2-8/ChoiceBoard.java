@@ -1,7 +1,10 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Collections;
-
+//todo list
+//add a temporary skip comparison if it's too hard
+//allow people to edit songs after made- e.g. they typoed a song or wrote wrong artist, at the end of song submission, have an opportunity to edit the array and replace/delete/add values if you accidentally type "n" before you done
+//check if a song has already been added-- however need to be careful, e.g. the song Stay has been written by the Kid Laroi, Rihanna, among others, so need to work around that somehow
 public class ChoiceBoard {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);

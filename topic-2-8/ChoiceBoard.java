@@ -5,21 +5,33 @@ import java.util.Collections;
 public class ChoiceBoard {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        ArrayList<String> songs = new ArrayList<>();
+        ArrayList<String> artists = new ArrayList<>();
         System.out.println("First, enter what you think might be your favorite song. Don't overthink.");
         String initSong = scanner.nextLine();
-        ArrayList<String> songs = new ArrayList<>();
-        System.out.println("If you found it hard to pick, this will help you pick your favorite song amongst some songs you like.");
-        System.out.println("Please enter a song:");
+        songs.add(initSong);
+        System.out.println("And who wrote this song?");
+        artists.add(scanner.nextLine());
+        System.out.println(
+                "If you found it hard to pick, this will help you pick your favorite song amongst some songs you like.");
+        System.out.println("Please enter a song that you like:");
         songs.add(scanner.nextLine());
+        System.out.println("And who wrote this song?");
+        artists.add(scanner.nextLine());
         while (songs.size() < 3) {
             System.out.println("Please enter another song:");
             songs.add(scanner.nextLine());
+            System.out.println("And who wrote this song?");
+            artists.add(scanner.nextLine());
         }
         System.out.println(
                 "Would you like to continue adding songs? You can keep entering songs until you type n and press enter.");
         String input;
         while (scanner.hasNextLine() && !(input = scanner.nextLine()).equals("n")) {
+            System.out.println("Enter a song:");
             songs.add(input);
+            System.out.println("Who wrote this song");
+            artists.add(scanner.nextLine());
             System.out.println("registered");
         }
         System.out.println(
@@ -89,5 +101,40 @@ public class ChoiceBoard {
             runnerUps.remove(tempArray.get(0));
         }
         System.out.println("Your top 3 favorite songs are, in order: " + finalSongs);
+        // planning:
+        // condense entire array into one with only one instance.
+        // for loop
+        // check value:
+        // find match of value, store count in temp count
+        // delete occurences
+        // if temp count > currentMax, set currentMax to temp count
+        // repeat for each value
+        ArrayList<String> tempArray2 = new ArrayList<>(artists);
+        // create simplified array:
+        ArrayList<String> condensed = new ArrayList<>();
+        for (int i = 0; i < artists.size(); i++) {
+            if (condensed.contains(artists.get(i))) {
+                tempArray2.remove(artists.get(i));
+            } else {
+                condensed.add(artists.get(i));
+                tempArray2.remove(artists.get(i));
+            }
+        }
+        int max = 0;
+        for (int i = 0; i < condensed.size(); i++) {
+            int tempMax = 0;
+            for (int j = 0; j < artists.size(); j++) {
+                System.out.println(condensed.get(i));
+                System.out.println(artists.get(j));
+                if (condensed.get(i).equals(artists.get(j))) {
+                    System.out.println("it equals");
+                    tempMax++;
+                }
+            }
+            if (tempMax > max) {
+                    max = tempMax;
+                }
+        }
+        System.out.println("Max: " + max);
     }
 }

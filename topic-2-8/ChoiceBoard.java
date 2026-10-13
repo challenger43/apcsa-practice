@@ -63,12 +63,13 @@ public class ChoiceBoard {
             }
         }
         System.out.println("Your favorite song is: " + songs.get(0));
-        for (int i = 0; i < finalSongs.size(); i++) {
-            if (finalSongs.get(i) == initSong) {
-                System.out.println("Your favorite song matches what you thought it was!");
-            }
-        }
+        // for (int i = 0; i < finalSongs.size(); i++) {
+
+        // }
         finalSongs.add(0, songs.get(0));
+        if (finalSongs.contains(initSong)) {
+            System.out.println("Your favorite song matches what you thought it was!");
+        } 
         // find second and 3rd favorite songs:
         while (finalSongs.size() < 3 & runnerUps.size() > 0) {
             // If there's only 1 song left, it automatically advances
@@ -81,7 +82,7 @@ public class ChoiceBoard {
             while (tempArray.size() > 1) {
                 String song1 = tempArray.get(0);
                 String song2 = tempArray.get(1);
-                System.out.println("Between these two songs, which do you like more? " + song1 + " or "
+                System.out.println("Now let's find your runner ups. Between these two songs, which do you like more? " + song1 + " or "
                         + song2 + "?");
                 int preferredSong = scanner.nextInt();
                 while (preferredSong != 1 && preferredSong != 2) {
@@ -93,8 +94,8 @@ public class ChoiceBoard {
                         scanner.nextLine();
                     }
                 }
-                tempArray.remove(2 - preferredSong); // preferredSong is 1 or 2, so this maps them to 1 and 0
-                                                     // respectively
+                                                     // 
+                tempArray.remove(2 - preferredSong); // preferredSong is 1 or 2, so this maps them to 1 and 0 respectively
             }
             finalSongs.add(tempArray.get(0));
             System.out.println("The next runner up is: " + tempArray.get(0));
@@ -126,7 +127,6 @@ public class ChoiceBoard {
             int tempMax = 0;
             for (int j = 0; j < artists.size(); j++) {
                 if (condensed.get(i).equals(artists.get(j))) {
-                    System.out.println("it equals");
                     tempMax++;
                 }
             }

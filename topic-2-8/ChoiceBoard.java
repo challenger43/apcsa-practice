@@ -121,20 +121,20 @@ public class ChoiceBoard {
             }
         }
         int max = 0;
+        String mostListenedArtist = "";
         for (int i = 0; i < condensed.size(); i++) {
             int tempMax = 0;
             for (int j = 0; j < artists.size(); j++) {
-                System.out.println(condensed.get(i));
-                System.out.println(artists.get(j));
                 if (condensed.get(i).equals(artists.get(j))) {
                     System.out.println("it equals");
                     tempMax++;
                 }
             }
             if (tempMax > max) {
-                    max = tempMax;
-                }
+                max = tempMax;
+                mostListenedArtist = condensed.get(i);
+            }
         }
-        System.out.println("Max: " + max);
+        System.out.println("Your most repeated artist is: " + mostListenedArtist + ", with " + max + " songs");
     }
 }

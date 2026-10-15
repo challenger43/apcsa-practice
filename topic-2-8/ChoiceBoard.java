@@ -102,19 +102,11 @@ public class ChoiceBoard {
         }
         System.out.println("Your top 3 favorite songs are, in order: " + finalSongs);
         //for each loop upgrade: 
-        for (String finalSong : finalSongs){
+        for (String finalSong : finalSongs){ //find -if
             if (finalSong.equals(initSong)){
                 System.out.println("Your favorite is in the final 3.");
             }
         }  
-        // for (int i = 0; i < finalSongs.size(); i++) {
-        //     if (finalSongs.get(i).equals(initSong)) { // find if.
-        //         System.out.println("Your favorite is in the final 3.");
-        //     } 
-        //     //could've just used .contains but ig the intention was to write a for loop to find it so yeah. 
-        // }
-        //technically no explicit else case but it's just not printing anything. 
-
         // planning:
         // condense entire array into one with only one instance.
         // for loop

@@ -101,12 +101,18 @@ public class ChoiceBoard {
             runnerUps.remove(tempArray.get(0));
         }
         System.out.println("Your top 3 favorite songs are, in order: " + finalSongs);
-        for (int i = 0; i < finalSongs.size(); i++) {
-            if (finalSongs.get(i).equals(initSong)) { // find if.
+        //for each loop upgrade: 
+        for (String finalSong : finalSongs){
+            if (finalSong.equals(initSong)){
                 System.out.println("Your favorite is in the final 3.");
-            } 
-            //could've just used .contains but ig the intention was to write a for loop to find it so yeah. 
-        }
+            }
+        }  
+        // for (int i = 0; i < finalSongs.size(); i++) {
+        //     if (finalSongs.get(i).equals(initSong)) { // find if.
+        //         System.out.println("Your favorite is in the final 3.");
+        //     } 
+        //     //could've just used .contains but ig the intention was to write a for loop to find it so yeah. 
+        // }
         //technically no explicit else case but it's just not printing anything. 
 
         // planning:

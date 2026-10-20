@@ -73,5 +73,6 @@ public class BinaryDisplay {
         File output = new File("binary-display.png");
         ImageIO.write(image, "png", output);
         System.out.println("Saved " + output.getAbsolutePath());
+        input.close();
     }
 }

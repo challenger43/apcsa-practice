@@ -1,6 +1,5 @@
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.Collections;
 //todo list
 //add a temporary skip comparison if it's too hard
 //allow people to edit songs after made- e.g. they typoed a song or wrote wrong artist, at the end of song submission, have an opportunity to edit the array and replace/delete/add values if you accidentally type "n" before you done
@@ -141,5 +140,6 @@ public class ChoiceBoard {
             }
         }
         System.out.println("Your most repeated artist is " + mostListenedArtist + ", with " + max + " songs");
+        scanner.close();
     }
 }

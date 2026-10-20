@@ -95,8 +95,8 @@ public class BinaryClockMath {
 
         System.out.println("The time in binary values is: " + sb + ", or in regular digits, " + recalculate);
         System.out.println("It is " + sb.substring(0,6) + " or in base ten, " + recalculate.substring(0,2) + " hours, " + sb.substring(7,13) + " or in base ten, " + recalculate.substring(3,5) + " minutes, " + sb.substring(14,20) + " or in base ten, " + recalculate.substring(6,8) + " seconds.");
+        input.close();
     }
-
 }
 // String timeValue = "";
 // if (i==0) timeValue = "hours";

@@ -45,6 +45,7 @@ public class StringPractice {
         // boolean unchanged = phrase.equals("Wooper Quagsire");
 
         System.out.println(summary);
+        input.close();
         // System.out.println("Original unchanged: " + unchanged);
     }
 }

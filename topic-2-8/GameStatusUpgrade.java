@@ -9,7 +9,20 @@ public class GameStatusUpgrade {
     }
 
     public static String filled(int origValue, int multiplier, int divisor) {
-        String result = "[";
+        // String result = "[";
+        // int value = origValue * multiplier / divisor;
+        // int amountFill = divisor / multiplier;
+        // int percentFill = ((origValue / divisor + 5) / 10) * 10;
+        // for (int position = 0; position < amountFill; position++) {
+        //     if (position < value) {
+        //         result += '#';
+        //     } else {
+        //         result += "-";
+        //     }
+        // }
+        // result += "]";
+        // return result;
+         String result = "[";
         int value = origValue * multiplier / divisor;
         for (int position = 0; position < 10; position++) {
             if (position < value) {
@@ -27,7 +40,7 @@ public class GameStatusUpgrade {
         int remainderPassed = secondsPassed % 60;
         String result = minutesPassed + ":";
         if (remainderPassed < 10) {
-            result+= "0";
+            result += "0";
         }
         return result + remainderPassed;
     }
@@ -72,7 +85,7 @@ public class GameStatusUpgrade {
 
         String healthBar = filled(shownHealth, 10, 100);
         String energyBar = filled(shownEnergy, 10, 60);
-        String shieldBar = filled (shownShield, 10, 40);
+        String shieldBar = filled(shownShield, 10, 40);
 
         // Format two durations.
         String elapsedText = durations(elapsedSeconds);
@@ -92,8 +105,14 @@ public class GameStatusUpgrade {
         String level = level(total);
         // Return one report. \n separates its lines; there is no final \n.
         String report = "PLAYER: " + name;
-        report = report + "\nHealth  " + healthBar + " " + shownHealth + "/100"; // could technically skip some of these steps further, sacrificing readability
-        report = report + "\nEnergy  " + energyBar + " " + shownEnergy + "/60"; // in other words, instead of making a variable called shown health, you could literally call clamp(argumenets), replacing that in this final string
+        report = report + "\nHealth  " + healthBar + " " + shownHealth + "/100"; // could technically skip some of these
+                                                                                 // steps further, sacrificing
+                                                                                 // readability
+        report = report + "\nEnergy  " + energyBar + " " + shownEnergy + "/60"; // in other words, instead of making a
+                                                                                // variable called shown health, you
+                                                                                // could literally call
+                                                                                // clamp(argumenets), replacing that in
+                                                                                // this final string
         report = report + "\nShield  " + shieldBar + " " + shownShield + "/40";
         report = report + "\nLevel:  " + level;
         report = report + "\nTime:   " + elapsedText;

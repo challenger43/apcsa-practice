@@ -10,31 +10,32 @@ public class GameStatus {
     }
 
     // Keep this method's name, parameters, and returned report.
-    public static String filled(int origValue, int multiplier, int divisor){
+    public static String filled(int origValue, int multiplier, int divisor) {
         String result = "[";
-        int value = origValue * multiplier/ divisor;  
-        for (int position = 0; position< 10; position++){
-            if (position < value){
+        int value = origValue * multiplier / divisor;
+        for (int position = 0; position < 10; position++) {
+            if (position < value) {
                 result = result + '#';
-            }
-            else{
+            } else {
                 result = result + "-";
             }
         }
         result = result + "]";
-        return result; 
+        return result;
     }
-    public static String durations(int secondsPassed){
-        int minutesPassed = secondsPassed /60;
-        int remainderPassed = secondsPassed %60; 
+
+    public static String durations(int secondsPassed) {
+        int minutesPassed = secondsPassed / 60;
+        int remainderPassed = secondsPassed % 60;
         String result = minutesPassed + ":";
-        if (remainderPassed < 10){
-            result  = result + "0";
+        if (remainderPassed < 10) {
+            result = result + "0";
         }
         return result + remainderPassed;
     }
-    public static int findMax(int[] scores){
-        int highest = scores[0]; //find highest score
+
+    public static int findMax(int[] scores) {
+        int highest = scores[0]; // find highest score
         for (int score : scores) {
             if (score > highest) {
                 highest = score;
@@ -42,6 +43,28 @@ public class GameStatus {
         }
         return highest;
     }
+
+    public static int findTotal(int[] scores) {
+        int total = 0;
+        for (int score : scores) {
+            total = total + score;
+        }
+        return total;
+    }
+
+    public static String level(int total){
+        String level = "";
+        if (total < 100) {
+            level = "Rookie";
+        } else if (total < 250) {
+            level = "Skilled";
+        } else {
+            level = "Expert";
+        }
+
+        return level;
+    }
+
     // Add your own static helper methods inside this class, outside other methods.
     public static String renderStatus(String name, int health, int energy,
             int elapsedSeconds, int bestSeconds, int[] scores) {
@@ -51,36 +74,25 @@ public class GameStatus {
         int shownHealth = clamp(health, 0, 100);
         // Integer division keeps the whole-number part.
 
-       String healthBar = filled(shownHealth, 10, 100);
-       String energyBar = filled(shownEnergy, 10, 60);
+        String healthBar = filled(shownHealth, 10, 100);
+        String energyBar = filled(shownEnergy, 10, 60);
 
         // Format two durations.
         String elapsedText = durations(elapsedSeconds);
         String bestText = durations(bestSeconds);
         // Summarize the recent scores.
-        int total = 0;
-        for (int score : scores) {
-            total = total + score;
-        }
+
         int highest = findMax(scores);
-       
-        int strongCount = 0;  //find scores greater than 80; 
+
+        int strongCount = 0; // find scores greater than 80;
         for (int score : scores) {
             if (score >= 80) {
                 strongCount = strongCount + 1;
             }
         }
-
+        int total = findTotal(scores);
         // Choose a level from the total.
-        String level;
-        if (total < 100) {
-            level = "Rookie";
-        } else if (total < 250) {
-            level = "Skilled";
-        } else {
-            level = "Expert";
-        }
-
+        String level = level(total); 
         // Return one report. \n separates its lines; there is no final \n.
         String report = "PLAYER: " + name;
         report = report + "\nHealth  " + healthBar + " " + shownHealth + "/100";

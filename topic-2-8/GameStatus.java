@@ -1,5 +1,4 @@
 public class GameStatus {
-
     public static int clamp(int value, int min, int max) {
         if (value < min) {
             return min;
@@ -9,18 +8,17 @@ public class GameStatus {
         return value;
     }
 
-    // Keep this method's name, parameters, and returned report.
     public static String filled(int origValue, int multiplier, int divisor) {
         String result = "[";
         int value = origValue * multiplier / divisor;
         for (int position = 0; position < 10; position++) {
             if (position < value) {
-                result = result + '#';
+                result += '#';
             } else {
-                result = result + "-";
+                result += "-";
             }
         }
-        result = result + "]";
+        result += "]";
         return result;
     }
 
@@ -29,7 +27,7 @@ public class GameStatus {
         int remainderPassed = secondsPassed % 60;
         String result = minutesPassed + ":";
         if (remainderPassed < 10) {
-            result = result + "0";
+            result+= "0";
         }
         return result + remainderPassed;
     }
@@ -47,22 +45,19 @@ public class GameStatus {
     public static int findTotal(int[] scores) {
         int total = 0;
         for (int score : scores) {
-            total = total + score;
+            total += score;
         }
         return total;
     }
 
-    public static String level(int total){
-        String level = "";
+    public static String level(int total) {
         if (total < 100) {
-            level = "Rookie";
+            return "Rookie";
         } else if (total < 250) {
-            level = "Skilled";
+            return "Skilled";
         } else {
-            level = "Expert";
+            return "Expert";
         }
-
-        return level;
     }
 
     // Add your own static helper methods inside this class, outside other methods.
@@ -92,11 +87,11 @@ public class GameStatus {
         }
         int total = findTotal(scores);
         // Choose a level from the total.
-        String level = level(total); 
+        String level = level(total);
         // Return one report. \n separates its lines; there is no final \n.
         String report = "PLAYER: " + name;
-        report = report + "\nHealth  " + healthBar + " " + shownHealth + "/100";
-        report = report + "\nEnergy  " + energyBar + " " + shownEnergy + "/60";
+        report = report + "\nHealth  " + healthBar + " " + shownHealth + "/100"; // could technically skip some of these steps further, sacrificing readability
+        report = report + "\nEnergy  " + energyBar + " " + shownEnergy + "/60"; // in other words, instead of making a variable called shown health, you could literally call clamp(argumenets), replacing that in this final string
         report = report + "\nLevel:  " + level;
         report = report + "\nTime:   " + elapsedText;
         report = report + "\nBest:   " + bestText;

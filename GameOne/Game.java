@@ -1,9 +1,10 @@
 import java.io.InputStream;
+import java.util.Random;
 import java.util.Scanner;
 
-public class Game { 
-    public static int roll() {
-        int roll = (int) (Math.random() * 6) + 1;
+public class Game {
+    public static int roll(Random rng) {
+        int roll = (int) (rng.nextDouble() * 6) + 1;
         System.out.println("This was your roll: " + roll);
         return roll;
     }
@@ -47,8 +48,8 @@ public class Game {
         int turnCount = 0;
         int player1Score = 90;
         int player2Score = 90;
-        while (turnCount <= 50 && !hasWinner) {
-           player1Score += turn("player1", System.in);
+        while (turnCount <= 50 && !hasWinner) { //make another function
+            player1Score += turn("player1", System.in);
             player2Score += turn("player2", System.in);
             turnCount++;
             if (checkWinner(player1Score, player2Score)) {
@@ -60,10 +61,16 @@ public class Game {
     }
 
     public static void main(String[] args) {
+        
         // Scanner input = new Scanner(System.in);
         // boolean humanMode = input.nextBoolean();
         // System.out.println("Play with clanker? True/False");
-        gamePlay();
+        // gamePlay();
+        Random rng = new Random(0);
+        
+        for (int i = 0; i < 10; i++) {
+            roll(rng);
+        }
 
         // Build your playable game here, calling your methods.
     }

@@ -15,7 +15,7 @@ public class Game {
         System.out.println("Welcome " + player);
         Scanner scanner = new Scanner(s);
         int tempTotal = 0;
-        while (!scanner.nextLine().equals("n")) {
+        while (scanner.hasNextLine() && !scanner.nextLine().equalsIgnoreCase("n")){
             System.out.println("roll? y/n");
             int roll = roll();
             System.out.println("This was your roll: " + roll);

@@ -1,3 +1,4 @@
+import java.io.InputStream;
 import java.util.Scanner;
 
 public class Game {
@@ -10,9 +11,9 @@ public class Game {
         return firstRoll == 1;
     }
 
-    public static int turn(String player) {
+    public static int turn(String player, InputStream s) {
         System.out.println("Welcome " + player);
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(s);
         int tempTotal = 0;
         while (!scanner.nextLine().equals("n")) {
             System.out.println("roll? y/n");
@@ -25,7 +26,7 @@ public class Game {
             tempTotal += roll;
             System.out.println("Turn Total: " + tempTotal);
         }
-        scanner.close();
+        // scanner.close();
         return tempTotal;
     }
 
@@ -42,8 +43,8 @@ public class Game {
         if (!humanMode) {
             System.out.println("Your turn first: ");
             while (checkWinner(player1Score, player2Score)) {
-                player1Score = turn("player1");
-                player2Score = turn("player2");
+                player1Score = turn("player1", System.in);
+                player2Score = turn("player2", System.in);
             }
         }
 

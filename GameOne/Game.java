@@ -11,7 +11,6 @@ public static Random defaultRNG = new Random();
 
     public static int roll(Random rng) {
         int roll = (int) (rng.nextDouble() * 6) + 1;
-        System.out.println("This was your roll: " + roll);
         return roll;
     }
 
@@ -26,6 +25,7 @@ public static Random defaultRNG = new Random();
         System.out.println("roll? y/n");
         while (scanner.hasNextLine() && !scanner.nextLine().equalsIgnoreCase("n")) {
             int roll = roll();
+            System.out.println("This was your roll: " + roll);
             if (checkRoll(roll)) {
                 System.out.println("You rolled a 1, so your score reset.");
                 return 0;
@@ -42,9 +42,7 @@ public static Random defaultRNG = new Random();
     }
 
     public static String whoWon(int player1Score, String player1, int player2Score, String Player2) {
-        String winner = player1Score > player2Score ? "Player1" : "Player2";
-        System.out.println(winner);
-        return winner;
+        return player1Score > player2Score ? "Player1" : "Player2";
     }
 
     public static String gamePlay() {
@@ -60,8 +58,9 @@ public static Random defaultRNG = new Random();
             player2Score = updatedScores[1];
             turnCount++;
             if (checkWinner(player1Score, player2Score)) {
-                System.out.println("We have a winner");
-                return whoWon(player1Score, "player1", player2Score, "player2");
+                 winner =whoWon(player1Score, "player1", player2Score, "player2");
+                System.out.println("We have a winner: " + winner);
+                return winner;
             }
         }
         return "tie, max movecount hit";

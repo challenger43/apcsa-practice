@@ -18,8 +18,13 @@ public class Game {
         Scanner scanner = new Scanner(s);
         int tempTotal = 0;
         System.out.println("roll? y/n");
+        Random rng = new Random(0);
+
+        for (int i = 0; i < 10; i++) {
+            roll(rng);
+        }
         while (scanner.hasNextLine() && !scanner.nextLine().equalsIgnoreCase("n")) {
-            int roll = roll();
+            int roll = roll(rng);
             if (checkRoll(roll)) {
                 System.out.println("You rolled a 1, so your score reset.");
                 return 0;
@@ -46,11 +51,12 @@ public class Game {
         String winner = "";
         boolean hasWinner = false;
         int turnCount = 0;
-        int player1Score = 90;
+        int player1Score = 90; // used for ease of testing, set to 0 for a true game
         int player2Score = 90;
-        while (turnCount <= 50 && !hasWinner) { //make another function
-            player1Score += turn("player1", System.in);
-            player2Score += turn("player2", System.in);
+        while (turnCount <= 50 && !hasWinner) { // make another function
+            int[] updatedScores = scores(player1Score, player2Score); //not sure if this actually conslidated anything but it looks a bit cleaner?
+            player1Score = updatedScores[0];
+            player2Score = updatedScores[1];
             turnCount++;
             if (checkWinner(player1Score, player2Score)) {
                 System.out.println("We have a winner");
@@ -60,18 +66,20 @@ public class Game {
         return "tie, max movecount hit";
     }
 
-    public static void main(String[] args) {
-        
-        // Scanner input = new Scanner(System.in);
-        // boolean humanMode = input.nextBoolean();
-        // System.out.println("Play with clanker? True/False");
-        // gamePlay();
-        Random rng = new Random(0);
-        
-        for (int i = 0; i < 10; i++) {
-            roll(rng);
-        }
+    public static int[] scores(int player1Score, int player2Score) {
+        player1Score += turn("player1", System.in);
+        player2Score += turn("player2", System.in);
 
-        // Build your playable game here, calling your methods.
+        return new int[] { player1Score, player2Score }; //make array to return two values at a time
     }
+
+    // public static void main(String[] args) { //useless vestigial function
+
+    //     // Scanner input = new Scanner(System.in);
+    //     // boolean humanMode = input.nextBoolean();
+    //     // System.out.println("Play with clanker? True/False");
+    //     // gamePlay();
+
+    //     // Build your playable game here, calling your methods.
+    // }
 }

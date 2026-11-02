@@ -3,28 +3,29 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Game {
+public static Random defaultRNG = new Random();
+
+    public static int roll(){
+        return roll(defaultRNG);
+    }
+
     public static int roll(Random rng) {
         int roll = (int) (rng.nextDouble() * 6) + 1;
-        // System.out.println("This was your roll: " + roll);
+        System.out.println("This was your roll: " + roll);
         return roll;
     }
 
     public static boolean checkRoll(int roll) {
         return roll == 1;
-    }
+    } 
 
     public static int turn(String player, InputStream s) {
         System.out.println("Welcome " + player);
         Scanner scanner = new Scanner(s);
         int tempTotal = 0;
         System.out.println("roll? y/n");
-        Random rng = new Random(0);
-
-        for (int i = 0; i < 10; i++) {
-            roll(rng);
-        }
         while (scanner.hasNextLine() && !scanner.nextLine().equalsIgnoreCase("n")) {
-            int roll = roll(rng);
+            int roll = roll();
             if (checkRoll(roll)) {
                 System.out.println("You rolled a 1, so your score reset.");
                 return 0;
@@ -39,7 +40,7 @@ public class Game {
     public static boolean checkWinner(int player1Score, int player2Score) {
         return (player1Score >= 100 || player2Score >= 100);
     }
- 
+
     public static String whoWon(int player1Score, String player1, int player2Score, String Player2) {
         String winner = player1Score > player2Score ? "Player1" : "Player2";
         System.out.println(winner);
@@ -73,13 +74,7 @@ public class Game {
         return new int[] { player1Score, player2Score }; //make array to return two values at a time
     }
 
-    public static void main(String[] args) { //useless vestigial function
-        
-        // Scanner input = new Scanner(System.in);
-        // boolean humanMode = input.nextBoolean();
-        // System.out.println("Play with clanker? True/False");
+    public static void main(String[] args) {
         gamePlay();
-
-        // Build your playable game here, calling your methods.
     }
 }

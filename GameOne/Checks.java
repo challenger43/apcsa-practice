@@ -13,7 +13,7 @@ public class Checks {
             System.out.println("FAIL: " + label + " (expected " + expected
                     + ", got " + actual + ")");
         }
-    }
+    } 
 
     public static void finish() {
         if (passed + failed == 0) {

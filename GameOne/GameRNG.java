@@ -11,7 +11,7 @@ public class GameRNG {
 
     public static boolean checkRoll(int roll) {
         return roll == 1;
-    }
+    } 
 
     public static int turn(String player, InputStream s, int rngNumber) {
         System.out.println("Welcome " + player);

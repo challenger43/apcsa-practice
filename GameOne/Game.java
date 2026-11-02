@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Game {
     public static int roll(Random rng) {
         int roll = (int) (rng.nextDouble() * 6) + 1;
-        System.out.println("This was your roll: " + roll);
+        // System.out.println("This was your roll: " + roll);
         return roll;
     }
 
@@ -39,7 +39,7 @@ public class Game {
     public static boolean checkWinner(int player1Score, int player2Score) {
         return (player1Score >= 100 || player2Score >= 100);
     }
-
+ 
     public static String whoWon(int player1Score, String player1, int player2Score, String Player2) {
         String winner = player1Score > player2Score ? "Player1" : "Player2";
         System.out.println(winner);
@@ -73,13 +73,13 @@ public class Game {
         return new int[] { player1Score, player2Score }; //make array to return two values at a time
     }
 
-    // public static void main(String[] args) { //useless vestigial function
+    public static void main(String[] args) { //useless vestigial function
+        
+        // Scanner input = new Scanner(System.in);
+        // boolean humanMode = input.nextBoolean();
+        // System.out.println("Play with clanker? True/False");
+        gamePlay();
 
-    //     // Scanner input = new Scanner(System.in);
-    //     // boolean humanMode = input.nextBoolean();
-    //     // System.out.println("Play with clanker? True/False");
-    //     // gamePlay();
-
-    //     // Build your playable game here, calling your methods.
-    // }
+        // Build your playable game here, calling your methods.
+    }
 }

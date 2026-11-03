@@ -45,19 +45,19 @@ public class GameTests {
         }
         // calculating total:
         // list of: immutable
-        Checks.equal(copyGame.calculateTurnTotal(new ArrayList<>(List.of(1, 4, 6))), 0, "should sum up array"); // cannot
+        Checks.equal(Game.calculateTurnTotal(new ArrayList<>(List.of(1, 4, 6))), 0, "should sum up array"); // cannot
                                                                                                                 // pass
                                                                                                                 // in
                                                                                                                 // array
                                                                                                                 // with
                                                                                                                 // curly
                                                                                                                 // brackets
-        Checks.equal(copyGame.calculateTurnTotal(new ArrayList<>(List.of(4, 4, 6))), 14, "should sum up array");
-        Checks.equal(copyGame.calculateTurnTotal(new ArrayList<>(List.of(6, 4, 1))), 0, "should sum up array");
+        Checks.equal(Game.calculateTurnTotal(new ArrayList<>(List.of(4, 4, 6))), 14, "should sum up array");
+        Checks.equal(Game.calculateTurnTotal(new ArrayList<>(List.of(6, 4, 1))), 0, "should sum up array");
 
         // getRolls
         // empty roll aka uesr no roll
-        Checks.equal(copyGame.getRolls(new Scanner(new ByteArrayInputStream("n\n".getBytes())), new Random(16)),
+        Checks.equal(Game.getRolls(new Scanner(new ByteArrayInputStream("n\n".getBytes())), new Random(16)),
                 new ArrayList<Integer>(), "returns empty list if user doesn't wanna roll");
         // rolls 4 then chickens
         Random rngTester = new Random(16);
@@ -71,11 +71,25 @@ public class GameTests {
             expected6.add((int)(rngTester2.nextDouble()*6) + 1);
         }
 
-        Checks.equal(copyGame.getRolls(new Scanner(new ByteArrayInputStream("y\ny\ny\ny\nn\n".getBytes())), new Random(16)),
+        Checks.equal(Game.getRolls(new Scanner(new ByteArrayInputStream("y\ny\ny\ny\nn\n".getBytes())), new Random(16)),
                 expected4, "returns result of 4 rolls, whatever random seed 16 wants it to be");
-
-        Checks.equal(copyGame.getRolls(new Scanner(new ByteArrayInputStream("y\ny\ny\ny\ny\ny\nn\n".getBytes())), new Random(17)),
-                expected6, "returns result of 6 rolls, whatever random seed 16 wants it to be");
+        //17a
+        Checks.equal(Game.getRolls(new Scanner(new ByteArrayInputStream("y\ny\ny\ny\ny\ny\nn\n".getBytes())), new Random(17)),
+                expected6, "returns result of 6 rolls, should fail bc random seed of 17 has 1 as 3rd value");
+        //check 17a should fail, because its seed is 551, meaning that at the 1 it should cut off, which wouldn't comopare correctly to 6 value array
+        //17b
+        //this one should succeed, i modified array
+        ArrayList<Integer> expected6b = new ArrayList<>();
+        Random rngTester6b = new Random(17);
+        for (int i = 0; i < 6; i++) {
+            int currentRoll = ((int)(rngTester6b.nextDouble()*6) + 1);
+            expected6b.add(currentRoll);
+            if (currentRoll == 1){
+                break;
+            } 
+        }
+        Checks.equal(Game.getRolls(new Scanner(new ByteArrayInputStream("y\ny\ny\ny\ny\ny\nn\n".getBytes())), new Random(17)),
+                expected6b, "should work, chop off array if 1 is spotted");
 
         // Checks.equal(Game.turn("player", new ByteArrayInputStream("n".getBytes())),
         // 0, "turn test 1");

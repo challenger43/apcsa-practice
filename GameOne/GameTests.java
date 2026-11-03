@@ -3,25 +3,31 @@ import java.util.Random;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
+
 public class GameTests {
     public static void main(String[] args) {
         // Add at least three cases per game method before Checks.finish().
-        // Checks.equal(Game.yourMethod(chosenInput), expectedResult, "case description");
+        // Checks.equal(Game.yourMethod(chosenInput), expectedResult, "case
+        // description");
         // checkRoll
         Checks.equal((Game.checkRoll(1)), true, "catches 1");
         Checks.equal((Game.checkRoll(4)), false, "should pass"); // aka equal false;
         Checks.equal((Game.checkRoll(6)), false, "should pass");
 
-        //checkWinner
+        // checkWinner
         Checks.equal((Game.checkWinner(3, 15)), false, "checks if any player score >= 100");
         Checks.equal((Game.checkWinner(100, 15)), true, "checks if any player score >= 100");
         Checks.equal((Game.checkWinner(105, 116)), true, "checks if any player score >= 100");
 
-        //whoWon
-        Checks.equal((Game.whoWon(100, "player1", 0, "player2")), "Player1", "Checks who has bigger score, given at least 1 score greater than 100");
-        Checks.equal((Game.whoWon(100, "player1", 105, "player2")), "Player2", "Checks who has bigger score, given at least 1 score greater than 100");
-        Checks.equal((Game.whoWon(100, "player1", 100, "player2")), "Player2", "Checks who has bigger score, given at least 1 score greater than 100");
-        //checks roll
+        // whoWon
+        Checks.equal((Game.whoWon(100, "player1", 0, "player2")), "Player1",
+                "Checks who has bigger score, given at least 1 score greater than 100");
+        Checks.equal((Game.whoWon(100, "player1", 105, "player2")), "Player2",
+                "Checks who has bigger score, given at least 1 score greater than 100");
+        Checks.equal((Game.whoWon(100, "player1", 100, "player2")), "Player2",
+                "Checks who has bigger score, given at least 1 score greater than 100");
+        // checks roll
         Random rng = new Random(0);
         int[] results = { 5, 2, 4, 4, 4, 2, 3, 6, 6, 6 };
         for (int i = 0; i < results.length; i++) {
@@ -37,14 +43,41 @@ public class GameTests {
         for (int i = 0; i < results3.length; i++) {
             Checks.equal(Game.roll(rng3), results3[i], "deterministic rng, seed 3");
         }
-        //list of: immutable
-        Checks.equal(copyGame.calculateTurnTotal(new ArrayList<>(List.of(1,4,6))), 0, "should sum up array"); //cannot pass in array with curly brackets
-        Checks.equal(copyGame.calculateTurnTotal(new ArrayList<>(List.of(4,4,6))), 14, "should sum up array"); 
-        Checks.equal(copyGame.calculateTurnTotal(new ArrayList<>(List.of(6,4,1))), 0, "should sum up array"); 
-       
-       
-       
-                // Checks.equal(Game.turn("player", new ByteArrayInputStream("n".getBytes())),
+        // calculating total:
+        // list of: immutable
+        Checks.equal(copyGame.calculateTurnTotal(new ArrayList<>(List.of(1, 4, 6))), 0, "should sum up array"); // cannot
+                                                                                                                // pass
+                                                                                                                // in
+                                                                                                                // array
+                                                                                                                // with
+                                                                                                                // curly
+                                                                                                                // brackets
+        Checks.equal(copyGame.calculateTurnTotal(new ArrayList<>(List.of(4, 4, 6))), 14, "should sum up array");
+        Checks.equal(copyGame.calculateTurnTotal(new ArrayList<>(List.of(6, 4, 1))), 0, "should sum up array");
+
+        // getRolls
+        // empty roll aka uesr no roll
+        Checks.equal(copyGame.getRolls(new Scanner(new ByteArrayInputStream("n\n".getBytes())), new Random(16)),
+                new ArrayList<Integer>(), "returns empty list if user doesn't wanna roll");
+        // rolls 4 then chickens
+        Random rngTester = new Random(16);
+        ArrayList<Integer> expected4 = new ArrayList<>();
+        for (int i = 0; i < 4; i++) {
+            expected4.add((int)(rngTester.nextDouble()*6) + 1);
+        }
+          ArrayList<Integer> expected6 = new ArrayList<>();
+        Random rngTester2 = new Random(17);
+        for (int i = 0; i < 6; i++) {
+            expected6.add((int)(rngTester2.nextDouble()*6) + 1);
+        }
+
+        Checks.equal(copyGame.getRolls(new Scanner(new ByteArrayInputStream("y\ny\ny\ny\nn\n".getBytes())), new Random(16)),
+                expected4, "returns result of 4 rolls, whatever random seed 16 wants it to be");
+
+        Checks.equal(copyGame.getRolls(new Scanner(new ByteArrayInputStream("y\ny\ny\ny\ny\ny\nn\n".getBytes())), new Random(17)),
+                expected6, "returns result of 6 rolls, whatever random seed 16 wants it to be");
+
+        // Checks.equal(Game.turn("player", new ByteArrayInputStream("n".getBytes())),
         // 0, "turn test 1");
         // Checks.equal(Game.turn("player", new
         // ByteArrayInputStream("yyyn".getBytes())), 1, "turn test 1");

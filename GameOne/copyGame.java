@@ -19,6 +19,9 @@ public class copyGame {
         return roll == 1;
     }
 
+    //new format for turn: split into better categories per functionality as right now all the stuff is mixed into one function
+    //  rolling(user input), calculate total--do stuff with user input, displayturnresult - tell player stuff, turn should be mainly function calls now
+
     public static int turn(String player, InputStream s) {
         System.out.println("Welcome " + player);
         Scanner scanner = new Scanner(s);

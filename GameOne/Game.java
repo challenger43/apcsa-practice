@@ -22,7 +22,6 @@ public class Game {
     // before changes all the stuff was mixed into one function
     // rolling(user input), calculate total--do stuff with user input,
     // displayturnresult - tell player stuff, turn should be mainly function calls
-    // now
 
     public static int turn(String player, Scanner scanner, Random rng) {
         System.out.println("Welcome " + player);
@@ -63,7 +62,6 @@ public class Game {
             System.out.println("roll again? y/n");
         }
         return rolls;
-
     }
 
     public static boolean checkWinner(int player1Score, int player2Score) {
@@ -71,7 +69,7 @@ public class Game {
     }
 
     public static String whoWon(int player1Score, String player1, int player2Score, String Player2) {
-        return player1Score > player2Score ? "Player1" : "Player2";
+        return player1Score > player2Score ? "Player 1" : "Player 2";
     } //yes i know techincally player 1 should win immediately but i felt like giving player 2 a chance to redemption
     //basically if player 1 rolls a 100 and calls it a day, player2 still gets their chance to try and get above player 1 to win
 
@@ -85,8 +83,7 @@ public class Game {
         int player1Score = 90; // used for ease of testing, set to 0 for a true game
         int player2Score = 90;
         while (turnCount <= 50 && !hasWinner) { // make another function
-            int[] updatedScores = scores(player1Score, player2Score, scanner, rng); // not sure if this actually conslidated anything
-                                                                      // but it looks a bit cleaner?
+            int[] updatedScores = scores(player1Score, player2Score, scanner, rng); // not sure if this actually conslidated anything but it looks a bit cleaner?
             player1Score = updatedScores[0];
             player2Score = updatedScores[1];
             turnCount++;
@@ -101,7 +98,6 @@ public class Game {
     public static int[] scores(int player1Score, int player2Score, Scanner scanner, Random rng) {
         player1Score += turn("player1", scanner, rng);
         player2Score += turn("player2", scanner, rng);
-
         return new int[] { player1Score, player2Score }; // make array to return two values at a time
     }
 

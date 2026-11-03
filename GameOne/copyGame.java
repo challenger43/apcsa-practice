@@ -19,8 +19,11 @@ public class copyGame {
         return roll == 1;
     }
 
-    //new format for turn: split into better categories per functionality as right now all the stuff is mixed into one function
-    //  rolling(user input), calculate total--do stuff with user input, displayturnresult - tell player stuff, turn should be mainly function calls now
+    // new format for turn: split into better categories per functionality as right
+    // now all the stuff is mixed into one function
+    // rolling(user input), calculate total--do stuff with user input,
+    // displayturnresult - tell player stuff, turn should be mainly function calls
+    // now
 
     public static int turn(String player, InputStream s) {
         System.out.println("Welcome " + player);
@@ -39,6 +42,16 @@ public class copyGame {
         }
         System.out.println(player + "'s score: " + tempTotal);
         return tempTotal;
+    }
+
+    public static void displayTurn(String player, int turnTotal) { //dont rly need to return anything
+        System.out.println(player + " " + turnTotal);
+        if (turnTotal == 0) {
+            System.out.println("You rolled a 1 so your score reset lol");
+        }
+        else{
+            System.out.println("Here's your turn total: " + turnTotal);
+        }
     }
 
     public static int calculateTurnTotal(ArrayList<Integer> rolls) {
@@ -72,7 +85,7 @@ public class copyGame {
         return player1Score > player2Score ? "Player1" : "Player2";
     }
 
-    public static String gamePlay() {
+    public static void gamePlay() {
         System.out.println("Your turn first: ");
         String winner = "";
         boolean hasWinner = false;
@@ -88,10 +101,8 @@ public class copyGame {
             if (checkWinner(player1Score, player2Score)) {
                 winner = whoWon(player1Score, "player1", player2Score, "player2");
                 System.out.println("We have a winner: " + winner);
-                return winner;
             }
         }
-        return "tie, max movecount hit";
     }
 
     public static int[] scores(int player1Score, int player2Score) {

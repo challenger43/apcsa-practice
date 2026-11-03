@@ -1,4 +1,3 @@
-import java.io.InputStream;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -20,36 +19,24 @@ public class copyGame {
     }
 
     // new format for turn: split into better categories per functionality as right
-    // now all the stuff is mixed into one function
+    // before changes all the stuff was mixed into one function
     // rolling(user input), calculate total--do stuff with user input,
     // displayturnresult - tell player stuff, turn should be mainly function calls
     // now
 
-    public static int turn(String player, InputStream s) {
+    public static int turn(String player, Scanner scanner, Random rng) {
         System.out.println("Welcome " + player);
-        Scanner scanner = new Scanner(s);
-        int tempTotal = 0;
-        System.out.println("roll? y/n");
-        while (scanner.hasNextLine() && !scanner.nextLine().equalsIgnoreCase("n")) {
-            int roll = roll();
-            System.out.println("This was your roll: " + roll);
-            if (checkRoll(roll)) {
-                System.out.println("You rolled a 1, so your score reset.");
-                return 0;
-            }
-            tempTotal += roll;
-            System.out.println("Turn Current Total: " + tempTotal);
-        }
-        System.out.println(player + "'s score: " + tempTotal);
-        return tempTotal;
+        ArrayList<Integer> rolls = getRolls(scanner, rng);
+        int turnTotal = calculateTurnTotal(rolls);
+        displayTurn(player, turnTotal);
+        return turnTotal;
     }
 
-    public static void displayTurn(String player, int turnTotal) { //dont rly need to return anything
+    public static void displayTurn(String player, int turnTotal) { // dont rly need to return anything
         System.out.println(player + " " + turnTotal);
         if (turnTotal == 0) {
             System.out.println("You rolled a 1 so your score reset lol");
-        }
-        else{
+        } else {
             System.out.println("Here's your turn total: " + turnTotal);
         }
     }
@@ -72,6 +59,8 @@ public class copyGame {
             int currentRoll = roll(rng);
             rolls.add(currentRoll);
             System.out.println("This was your roll: " + currentRoll);
+            if (checkRoll(currentRoll)) {break;}
+            System.out.println("roll again? y/n");
         }
         return rolls;
 
@@ -83,17 +72,20 @@ public class copyGame {
 
     public static String whoWon(int player1Score, String player1, int player2Score, String Player2) {
         return player1Score > player2Score ? "Player1" : "Player2";
-    }
+    } //yes i know techincally player 1 should win immediately but i felt like giving player 2 a chance to redemption
+    //basically if player 1 rolls a 100 and calls it a day, player2 still gets their chance to try and get above player 1 to win
 
     public static void gamePlay() {
         System.out.println("Your turn first: ");
+        Scanner scanner = new Scanner(System.in);
+        Random rng = new Random();
         String winner = "";
         boolean hasWinner = false;
         int turnCount = 0;
         int player1Score = 90; // used for ease of testing, set to 0 for a true game
         int player2Score = 90;
         while (turnCount <= 50 && !hasWinner) { // make another function
-            int[] updatedScores = scores(player1Score, player2Score); // not sure if this actually conslidated anything
+            int[] updatedScores = scores(player1Score, player2Score, scanner, rng); // not sure if this actually conslidated anything
                                                                       // but it looks a bit cleaner?
             player1Score = updatedScores[0];
             player2Score = updatedScores[1];
@@ -101,13 +93,14 @@ public class copyGame {
             if (checkWinner(player1Score, player2Score)) {
                 winner = whoWon(player1Score, "player1", player2Score, "player2");
                 System.out.println("We have a winner: " + winner);
+                break;
             }
         }
     }
 
-    public static int[] scores(int player1Score, int player2Score) {
-        player1Score += turn("player1", System.in);
-        player2Score += turn("player2", System.in);
+    public static int[] scores(int player1Score, int player2Score, Scanner scanner, Random rng) {
+        player1Score += turn("player1", scanner, rng);
+        player2Score += turn("player2", scanner, rng);
 
         return new int[] { player1Score, player2Score }; // make array to return two values at a time
     }

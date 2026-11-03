@@ -1,0 +1,104 @@
+import java.io.InputStream;
+import java.util.Random;
+import java.util.Scanner;
+import java.util.ArrayList;
+
+public class copyGame {
+    public static Random defaultRNG = new Random();
+
+    public static int roll() {
+        return roll(defaultRNG);
+    }
+
+    public static int roll(Random rng) {
+        int roll = (int) (rng.nextDouble() * 6) + 1;
+        return roll;
+    }
+
+    public static boolean checkRoll(int roll) {
+        return roll == 1;
+    }
+
+    public static int turn(String player, InputStream s) {
+        System.out.println("Welcome " + player);
+        Scanner scanner = new Scanner(s);
+        int tempTotal = 0;
+        System.out.println("roll? y/n");
+        while (scanner.hasNextLine() && !scanner.nextLine().equalsIgnoreCase("n")) {
+            int roll = roll();
+            System.out.println("This was your roll: " + roll);
+            if (checkRoll(roll)) {
+                System.out.println("You rolled a 1, so your score reset.");
+                return 0;
+            }
+            tempTotal += roll;
+            System.out.println("Turn Current Total: " + tempTotal);
+        }
+        System.out.println(player + "'s score: " + tempTotal);
+        return tempTotal;
+    }
+
+    public static int calculateTurnTotal(ArrayList<Integer> rolls) {
+        int total = 0;
+        for (int roll : rolls) {
+            if (checkRoll(roll)) {
+                return 0;
+            }
+            total += roll;
+        }
+        return total;
+    }
+
+    public static ArrayList<Integer> getRolls(Scanner scanner, Random rng) {
+        ArrayList<Integer> rolls = new ArrayList<>();
+        System.out.println("roll? y/n");
+        while (scanner.hasNextLine() && !scanner.nextLine().equalsIgnoreCase("n")) {
+            int currentRoll = roll(rng);
+            rolls.add(currentRoll);
+            System.out.println("This was your roll: " + currentRoll);
+        }
+        return rolls;
+
+    }
+
+    public static boolean checkWinner(int player1Score, int player2Score) {
+        return (player1Score >= 100 || player2Score >= 100);
+    }
+
+    public static String whoWon(int player1Score, String player1, int player2Score, String Player2) {
+        return player1Score > player2Score ? "Player1" : "Player2";
+    }
+
+    public static String gamePlay() {
+        System.out.println("Your turn first: ");
+        String winner = "";
+        boolean hasWinner = false;
+        int turnCount = 0;
+        int player1Score = 90; // used for ease of testing, set to 0 for a true game
+        int player2Score = 90;
+        while (turnCount <= 50 && !hasWinner) { // make another function
+            int[] updatedScores = scores(player1Score, player2Score); // not sure if this actually conslidated anything
+                                                                      // but it looks a bit cleaner?
+            player1Score = updatedScores[0];
+            player2Score = updatedScores[1];
+            turnCount++;
+            if (checkWinner(player1Score, player2Score)) {
+                winner = whoWon(player1Score, "player1", player2Score, "player2");
+                System.out.println("We have a winner: " + winner);
+                return winner;
+            }
+        }
+        return "tie, max movecount hit";
+    }
+
+    public static int[] scores(int player1Score, int player2Score) {
+        player1Score += turn("player1", System.in);
+        player2Score += turn("player2", System.in);
+
+        return new int[] { player1Score, player2Score }; // make array to return two values at a time
+    }
+
+    public static void main(String[] args) {
+        gamePlay();
+    }
+}

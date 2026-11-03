@@ -1,6 +1,8 @@
 import java.io.ByteArrayInputStream;
 import java.util.Random;
-
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 public class GameTests {
     public static void main(String[] args) {
         // Add at least three cases per game method before Checks.finish().
@@ -16,7 +18,6 @@ public class GameTests {
         Checks.equal((Game.checkWinner(105, 116)), true, "checks if any player score >= 100");
 
         //whoWon
-
         Checks.equal((Game.whoWon(100, "player1", 0, "player2")), "Player1", "Checks who has bigger score, given at least 1 score greater than 100");
         Checks.equal((Game.whoWon(100, "player1", 105, "player2")), "Player2", "Checks who has bigger score, given at least 1 score greater than 100");
         Checks.equal((Game.whoWon(100, "player1", 100, "player2")), "Player2", "Checks who has bigger score, given at least 1 score greater than 100");
@@ -36,8 +37,13 @@ public class GameTests {
         for (int i = 0; i < results3.length; i++) {
             Checks.equal(Game.roll(rng3), results3[i], "deterministic rng, seed 3");
         }
-          //score updater
-        Checks.equal((Game.scores(5, 10)), new int[] {5+Game.roll(rng)}, "score updater given original score 5, plus whatever roll it rolled");
+        //list of: immutable
+        Checks.equal(copyGame.calculateTurnTotal(new ArrayList<>(List.of(1,4,6))), 0, "should sum up array"); //cannot pass in array with curly brackets
+        Checks.equal(copyGame.calculateTurnTotal(new ArrayList<>(List.of(4,4,6))), 14, "should sum up array"); 
+        Checks.equal(copyGame.calculateTurnTotal(new ArrayList<>(List.of(6,4,1))), 0, "should sum up array"); 
+       
+       
+       
                 // Checks.equal(Game.turn("player", new ByteArrayInputStream("n".getBytes())),
         // 0, "turn test 1");
         // Checks.equal(Game.turn("player", new

@@ -1,3 +1,4 @@
+import java.util.Scanner;
 public class CafeOrders {
     int small = 3;
     int medium = 4;
@@ -18,5 +19,14 @@ public class CafeOrders {
         }
         System.out.println(price);
         return price;
+    }
+    public static int serveCustomer(int customerNumber, int drinkCount){
+        Scanner scanner = new Scanner(System.in);
+        for (int i = 0; i< drinkCount; i++){
+            System.out.println("What would ye likes for ")
+        }
+    }
+    public static void main(){
+        drinkPrice("L", "Y");
     }
 }

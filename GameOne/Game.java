@@ -1,3 +1,6 @@
+//potential extensions: 
+//give ai more intelligence/add an ai mode, e.g. if the ai's turn total has exceeded 15 then bank it, or if their current turn count is greater than 5, or if it is their last chance
+//to win, then make it make educated decisions rather than randomly inputting y/n. 
 import java.util.Random;
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -85,7 +88,9 @@ public class Game {
         while (turnCount <= 50 && !hasWinner) { // make another function
             int[] updatedScores = scores(player1Score, player2Score, scanner, rng); // not sure if this actually conslidated anything but it looks a bit cleaner?
             player1Score = updatedScores[0];
+            System.out.println("Player 1 total: " + updatedScores[0]);
             player2Score = updatedScores[1];
+            System.out.println("Player 2 total: " + updatedScores[1]);
             turnCount++;
             if (checkWinner(player1Score, player2Score)) {
                 winner = whoWon(player1Score, "player1", player2Score, "player2");

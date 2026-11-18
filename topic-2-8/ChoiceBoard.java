@@ -16,7 +16,7 @@ public class ChoiceBoard {
         artists.add(scanner.nextLine());
         System.out.println(
                 "If you found it hard to pick, this will help you pick your favorite song amongst some songs you like.");
-        System.out.println("Please enter a song that you like:");
+        System.out.println("Please enter a song that you like that is different from your previous song: ");
         songs.add(scanner.nextLine());
         System.out.println("And who wrote this song?");
         artists.add(scanner.nextLine());

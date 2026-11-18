@@ -83,8 +83,8 @@ public class Game {
         String winner = "";
         boolean hasWinner = false;
         int turnCount = 0;
-        int player1Score = 90; // used for ease of testing, set to 0 for a true game
-        int player2Score = 90;
+        int player1Score = 0; // used for ease of testing, set to 0 for a true game
+        int player2Score = 0;
         while (turnCount <= 50 && !hasWinner) { // make another function
             int[] updatedScores = scores(player1Score, player2Score, scanner, rng); // not sure if this actually conslidated anything but it looks a bit cleaner?
             player1Score = updatedScores[0];
